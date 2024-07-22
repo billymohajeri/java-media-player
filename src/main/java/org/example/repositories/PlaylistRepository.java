@@ -1,5 +1,7 @@
 package org.example.repositories;
 
+import org.example.entities.Playlist;
+
 public class PlaylistRepository {
 
   public void addPlaylist(Playlist playlist) {
