@@ -2,7 +2,7 @@ package org.example.interfaces;
 
 import org.example.entities.Playlist;
 
-public class IPlaylistService {
+public IPlaylistService {
 
   public void createPlaylist(Playlist playlist) {
   }

@@ -11,11 +11,11 @@ public class AudioFile extends MediaFile {
   }
 
   public void adjustVolume(int volume) {
-
+    this.volume = volume;
   }
 
   public void changeSoundEffect(String effect) {
-
+    this.soundEffect = soundEffect;
   }
 
 }

@@ -2,6 +2,8 @@ package org.example.repositories;
 
 import org.example.entities.MediaFile;
 
+import java.util.List;
+
 public class MediaFileRepository {
   public void addMediaFile(MediaFile mediaFile) {
 
@@ -15,11 +17,13 @@ public class MediaFileRepository {
 
   }
 
-  public void getMediaFileById(int id) {
+  public MediaFile getMediaFileById(int id) {
 
+    return null;
   }
 
-  public void getAllMediaFiles() {
+  public List<MediaFile> getAllMediaFiles() {
 
+    return null;
   }
 }

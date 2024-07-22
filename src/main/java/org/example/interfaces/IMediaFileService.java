@@ -2,37 +2,28 @@ package org.example.interfaces;
 
 import org.example.entities.MediaFile;
 
-public class IMediaFileService {
-  public void addMediaFile(MediaFile mediaFile) {
-  }
+import java.util.List;
 
-  public void deleteMediaFile(int id) {
-  }
+public interface IMediaFileService {
+  void addMediaFile(MediaFile mediaFile);
 
-  public void updateMediaFile(MediaFile mediaFile) {
-  }
+  void deleteMediaFile(int id);
 
-  public void getMediaFile(int id) {
-  }
+  void updateMediaFile(MediaFile mediaFile);
 
-  public void listMediaFiles() {
-  }
+  MediaFile getMediaFile(int id);
 
-  public void playMedia(int id) {
-  }
+  List<MediaFile> listMediaFiles();
 
-  public void pauseMedia(int id) {
-  }
+  void playMedia(int id);
 
-  public void stopMedia(int id) {
-  }
+  void pauseMedia(int id);
 
-  public void adjustVolume(int id, int volume) {
-  }
+  void stopMedia(int id);
 
-  public void adjustBrightness(int id, int brightness) {
-  }
+  void adjustVolume(int id, int volume);
 
-  public void changeSoundEffect(int id, String effect) {
-  }
+  void adjustBrightness(int id, int brightness);
+
+  void changeSoundEffect(int id, String effect);
 }

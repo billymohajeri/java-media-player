@@ -11,10 +11,10 @@ public class VideoFile extends MediaFile {
   }
 
   public void adjustVolume(int volume) {
-
+    this.volume = volume;
   }
 
   public void adjustBrightness(int brightness) {
-
+    this.brightness = brightness;
   }
 }
