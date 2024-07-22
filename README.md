@@ -29,7 +29,7 @@ The media player application is a robust software that manages collections of di
 
 ### Classes and Methods
 
-#### Models
+#### Entities
 
 1. **User**
    - Fields: `int id`, `String username`, `String password`, `List<Playlist> playlists`
