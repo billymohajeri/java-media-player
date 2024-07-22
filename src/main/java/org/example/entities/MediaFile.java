@@ -1,9 +1,9 @@
 package org.example.entities;
 
 public class MediaFile {
-  int id;
-  String name;
-  String type;
+  private int id;
+  private String name;
+  private String type;
 
   public MediaFile(int id, String name, String type) {
     this.id = id;
@@ -11,16 +11,28 @@ public class MediaFile {
     this.type = type;
   }
 
-  public void play() {
+  public int getId() {
+    return id;
+  }
 
+  public String getName() {
+    return name;
+  }
+
+  public String getType() {
+    return type;
+  }
+
+  public void play() {
+    System.out.println("Playing media file: " + name);
   }
 
   public void pause() {
-
+    System.out.println("Pausing media file: " + name);
   }
 
   public void stop() {
-
+    System.out.println("Stopping media file: " + name);
   }
 
   public void adjustSetting(String setting, int value) {
