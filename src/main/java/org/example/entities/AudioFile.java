@@ -1,4 +1,4 @@
-package org.example.entity;
+package org.example.entities;
 
 public class AudioFile extends MediaFile {
   int volume;

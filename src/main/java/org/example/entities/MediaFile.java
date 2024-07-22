@@ -1,4 +1,4 @@
-package org.example.entity;
+package org.example.entities;
 
 public class MediaFile {
   int id;

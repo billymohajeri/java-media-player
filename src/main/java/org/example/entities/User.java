@@ -1,4 +1,4 @@
-package org.example.entity;
+package org.example.entities;
 
 import java.util.List;
 
@@ -23,7 +23,7 @@ public class User {
     return true;
   }
 
-  public List<Playlist> getPlaylists() {
+  public void getPlaylists() {
 
   }
 }
