@@ -2,6 +2,8 @@ package org.example.repositories;
 
 import org.example.entities.Playlist;
 
+import java.util.List;
+
 public class PlaylistRepository {
 
   public void addPlaylist(Playlist playlist) {
@@ -16,11 +18,13 @@ public class PlaylistRepository {
 
   }
 
-  public void getPlaylistById(int id) {
+  public Playlist getPlaylistById(int id) {
 
+    return null;
   }
 
-  public void getAllPlaylists() {
+  public List<Playlist> getAllPlaylists() {
 
+    return null;
   }
 }

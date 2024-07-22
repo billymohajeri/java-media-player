@@ -2,29 +2,23 @@ package org.example.interfaces;
 
 import org.example.entities.Playlist;
 
-public IPlaylistService {
+import java.util.List;
 
-  public void createPlaylist(Playlist playlist) {
-  }
+public interface IPlaylistService {
 
-  public void deletePlaylist(int id) {
-  }
+  void createPlaylist(Playlist playlist);
 
-  public void updatePlaylist(Playlist playlist) {
-  }
+  void deletePlaylist(int id);
 
-  public void getPlaylist(int id) {
-  }
+  void updatePlaylist(Playlist playlist);
 
-  public void listPlaylists() {
-  }
+  Playlist getPlaylist(int id);
 
-  public void playMediaFromPlaylist(int playlistId, int mediaFileId) {
-  }
+  List<Playlist> listPlaylists();
 
-  public void pauseMediaInPlaylist(int playlistId, int mediaFileId) {
-  }
+  void playMediaFromPlaylist(int playlistId, int mediaFileId);
 
-  public void stopMediaInPlaylist(int playlistId, int mediaFileId) {
-  }
+  void pauseMediaInPlaylist(int playlistId, int mediaFileId);
+
+  void stopMediaInPlaylist(int playlistId, int mediaFileId);
 }
