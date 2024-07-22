@@ -6,7 +6,7 @@ public class User {
   int id;
   String username;
   String password;
-//  List<Playlist> playlists;
+  List<Playlist> playlists;
 
   public User(int id, String username, String password) {
     this.id = id;
