@@ -2,6 +2,8 @@ package org.example.repositories;
 
 import org.example.entities.User;
 
+import java.util.List;
+
 public class UserRepository {
   public void addUser(User user) {
 
@@ -15,11 +17,13 @@ public class UserRepository {
 
   }
 
-  public void getUserById(int id) {
+  public User getUserById(int id) {
 
+    return null;
   }
 
-  public void getAllUsers() {
+  public List<User> getAllUsers() {
 
+    return null;
   }
 }

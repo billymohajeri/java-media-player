@@ -2,25 +2,17 @@ package org.example.interfaces;
 
 import org.example.entities.User;
 
-public class IUserService {
-  public void createUser(User user) {
+import java.util.List;
 
-  }
+public interface IUserService {
+  void createUser(User user);
 
-  public void deleteUser(int id) {
+  void deleteUser(int id);
 
-  }
+  void updateUser(User user);
 
-  public void updateUser(User user) {
+  User getUser(int id);
 
-  }
-
-  public void getUser(int id) {
-
-  }
-
-  public void listUsers() {
-
-  }
+  List<User> listUsers();
 
 }
