@@ -8,12 +8,12 @@ public class User {
   String password;
   List<Playlist> playlists;
 
-  public User(int id, String username, String password) {
+  public User(int id, String username, String password, List<Playlist> playlists) {
     this.id = id;
     this.username = username;
     this.password = password;
+    this.playlists = playlists;
   }
-
 
   void addPlaylist(Playlist playlist) {
 
