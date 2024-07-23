@@ -3,6 +3,7 @@ package org.example.interfaces;
 import org.example.entities.User;
 
 import java.util.List;
+import java.util.Optional;
 
 public interface IUserService {
   void createUser(User user);
@@ -11,7 +12,7 @@ public interface IUserService {
 
   void updateUser(User user);
 
-  User getUser(int id);
+  Optional<User> getUser(int id);
 
   List<User> listUsers();
 

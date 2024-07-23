@@ -5,6 +5,7 @@ import org.example.interfaces.IUserService;
 import org.example.repositories.UserRepository;
 
 import java.util.List;
+import java.util.Optional;
 
 public class UserService implements IUserService {
 
@@ -24,7 +25,7 @@ public class UserService implements IUserService {
   public void updateUser(User user) {
   }
 
-  public User getUser(int id) {
+  public Optional<User> getUser(int id) {
     return userRepository.getUserById(id);
   }
 

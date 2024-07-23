@@ -1,10 +1,18 @@
 package org.example.repositories;
 
+import org.example.databases.Database;
 import org.example.entities.User;
 
 import java.util.List;
+import java.util.Optional;
 
 public class UserRepository {
+  private final List<User> users;
+
+  public UserRepository(Database database) {
+    this.users = database.users;
+  }
+
   public void addUser(User user) {
 
   }
@@ -17,13 +25,12 @@ public class UserRepository {
 
   }
 
-  public User getUserById(int id) {
-
-    return null;
+  public Optional<User> getUserById(int id) {
+    return users.stream()
+            .filter(user -> user.getId() == id).findFirst();
   }
 
   public List<User> getAllUsers() {
-
-    return null;
+    return users;
   }
 }
