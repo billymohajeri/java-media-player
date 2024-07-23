@@ -24,7 +24,7 @@ public class MediaFileService implements IMediaFileService {
   }
 
   public Optional<MediaFile> getMediaFile(int id) {
-    return Optional.ofNullable(mediaFileRepository.getMediaFileById(id));
+    return mediaFileRepository.getMediaFileById(id);
   }
 
   public List<MediaFile> listMediaFiles() {
