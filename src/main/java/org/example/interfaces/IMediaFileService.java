@@ -12,9 +12,9 @@ public interface IMediaFileService {
 
   void updateMediaFile(MediaFile mediaFile);
 
-  public Optional<MediaFile> getMediaFile(int id);
+  Optional<MediaFile> getMediaFile(int id);
 
-  public List<MediaFile> listMediaFiles();
+  List<MediaFile> listMediaFiles();
 
   void playMedia(int id);
 
