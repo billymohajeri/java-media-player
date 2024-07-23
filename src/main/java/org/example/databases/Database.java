@@ -1,12 +1,18 @@
 package org.example.databases;
 
+import org.example.entities.MediaFile;
+
 import java.util.ArrayList;
 import java.util.List;
 
 public class Database {
-  public final List<String> items;
+  public List<MediaFile> mediaFiles;
 
   public Database() {
-    this.items = new ArrayList<>(List.of("Music1", "Music2"));
+    this.mediaFiles = new ArrayList<>(List.of(
+            new MediaFile(1, "Jenny", "Audio"),
+            new MediaFile(2, "In the Shadows", "Audio"),
+            new MediaFile(3, "Cha Cha Cha", "Audio")
+    ));
   }
 }
