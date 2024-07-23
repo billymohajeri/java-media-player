@@ -5,6 +5,7 @@ import org.example.interfaces.IPlaylistService;
 import org.example.repositories.PlaylistRepository;
 
 import java.util.List;
+import java.util.Optional;
 
 public class PlaylistService implements IPlaylistService {
   private final PlaylistRepository playlistRepository;
@@ -22,7 +23,7 @@ public class PlaylistService implements IPlaylistService {
   public void updatePlaylist(Playlist playlist) {
   }
 
-  public Playlist getPlaylist(int id) {
+  public Optional<Playlist> getPlaylist(int id) {
     return playlistRepository.getPlaylistById(id);
   }
 

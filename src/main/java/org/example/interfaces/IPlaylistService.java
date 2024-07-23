@@ -3,6 +3,7 @@ package org.example.interfaces;
 import org.example.entities.Playlist;
 
 import java.util.List;
+import java.util.Optional;
 
 public interface IPlaylistService {
 
@@ -12,7 +13,7 @@ public interface IPlaylistService {
 
   void updatePlaylist(Playlist playlist);
 
-  Playlist getPlaylist(int id);
+  Optional<Playlist> getPlaylist(int id);
 
   List<Playlist> listPlaylists();
 
