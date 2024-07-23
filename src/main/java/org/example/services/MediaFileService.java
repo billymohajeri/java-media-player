@@ -5,6 +5,7 @@ import org.example.interfaces.IMediaFileService;
 import org.example.repositories.MediaFileRepository;
 
 import java.util.List;
+import java.util.Optional;
 
 public class MediaFileService implements IMediaFileService {
   private final MediaFileRepository mediaFileRepository;
@@ -22,8 +23,8 @@ public class MediaFileService implements IMediaFileService {
   public void updateMediaFile(MediaFile mediaFile) {
   }
 
-  public MediaFile getMediaFile(int id) {
-    return mediaFileRepository.getMediaFileById(id);
+  public Optional<MediaFile> getMediaFile(int id) {
+    return Optional.ofNullable(mediaFileRepository.getMediaFileById(id));
   }
 
   public List<MediaFile> listMediaFiles() {

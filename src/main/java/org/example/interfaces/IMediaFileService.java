@@ -3,6 +3,7 @@ package org.example.interfaces;
 import org.example.entities.MediaFile;
 
 import java.util.List;
+import java.util.Optional;
 
 public interface IMediaFileService {
   void addMediaFile(MediaFile mediaFile);
@@ -11,9 +12,9 @@ public interface IMediaFileService {
 
   void updateMediaFile(MediaFile mediaFile);
 
-  MediaFile getMediaFile(int id);
+  public Optional<MediaFile> getMediaFile(int id);
 
-  List<MediaFile> listMediaFiles();
+  public List<MediaFile> listMediaFiles();
 
   void playMedia(int id);
 
