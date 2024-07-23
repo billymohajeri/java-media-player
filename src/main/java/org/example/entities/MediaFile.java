@@ -1,8 +1,8 @@
 package org.example.entities;
 
 public class MediaFile {
-  private int id;
-  private String name;
+  private final int id;
+  private final String name;
   private String type;
 
   public MediaFile(int id, String name, String type) {
@@ -21,6 +21,10 @@ public class MediaFile {
 
   public String getType() {
     return type;
+  }
+
+  public void updateType(String type) {
+    this.type = type;
   }
 
   public void play() {

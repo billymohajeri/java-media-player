@@ -1,6 +1,6 @@
 package org.example;
 
-import org.example.database.Database;
+import org.example.databases.Database;
 
 import java.util.Scanner;
 

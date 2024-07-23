@@ -1,4 +1,4 @@
-package org.example.database;
+package org.example.databases;
 
 import java.util.ArrayList;
 import java.util.List;
