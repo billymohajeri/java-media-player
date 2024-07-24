@@ -1,5 +1,6 @@
 package org.example.entities;
 
+
 public class VideoFile extends MediaFile {
   int volume;
   int brightness;

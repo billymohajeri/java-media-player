@@ -1,6 +1,10 @@
 package org.example.entities;
 
+import lombok.Getter;
+
 import java.util.List;
+
+@Getter
 
 public class Playlist {
   private final int id;
@@ -10,14 +14,6 @@ public class Playlist {
   public Playlist(int id, String name) {
     this.id = id;
     this.name = name;
-  }
-
-  public int getId() {
-    return id;
-  }
-
-  public String getName() {
-    return name;
   }
 
   public void addMediaFile(MediaFile mediaFile) {
