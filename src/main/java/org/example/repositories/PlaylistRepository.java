@@ -1,11 +1,17 @@
 package org.example.repositories;
 
+import org.example.databases.Database;
 import org.example.entities.Playlist;
 
 import java.util.List;
 import java.util.Optional;
 
 public class PlaylistRepository {
+  private final List<Playlist> playlists;
+
+  public PlaylistRepository(Database database) {
+    this.playlists = database.playlists;
+  }
 
   public void addPlaylist(Playlist playlist) {
 
@@ -20,12 +26,11 @@ public class PlaylistRepository {
   }
 
   public Optional<Playlist> getPlaylistById(int id) {
-
-    return null;
+    return playlists.stream()
+            .filter(playlist -> playlist.getId() == id).findFirst();
   }
 
   public List<Playlist> getAllPlaylists() {
-
-    return null;
+    return playlists;
   }
 }
