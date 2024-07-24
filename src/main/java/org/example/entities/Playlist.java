@@ -11,12 +11,6 @@ public class Playlist {
   private String name;
   private List<MediaFile> mediaFiles;
 
-  public Playlist(int id, String name, List<MediaFile> mediaFiles) {
-    this.id = id;
-    this.name = name;
-    this.mediaFiles = mediaFiles;
-  }
-
   public Playlist(int id, String name) {
     this.id = id;
     this.name = name;

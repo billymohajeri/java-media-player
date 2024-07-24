@@ -16,6 +16,7 @@ public class UserService implements IUserService {
   }
 
   public void createUser(User user) {
+    userRepository.addUser(user);
   }
 
   public void deleteUser(int id) {

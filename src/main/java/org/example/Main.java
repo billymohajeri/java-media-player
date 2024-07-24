@@ -32,6 +32,7 @@ public class Main {
       System.out.println("2- Get media file by ID");
       System.out.println("3- Get all users");
       System.out.println("4- Get user by ID");
+      System.out.println("5- Add user");
       System.out.println("Q- Quit");
       System.out.println(BLUE + "Enter your choice: ");
       choice = scanner.nextLine().toUpperCase();
@@ -41,6 +42,7 @@ public class Main {
         case "2" -> printMediaFileById();
         case "3" -> printAllUsers();
         case "4" -> printUserById();
+        case "5" -> addUser();
         case "Q" -> System.out.println(RED + "Exiting the app...");
         default -> System.out.println(RED + "Invalid choice, try again!");
       }
@@ -97,5 +99,17 @@ public class Main {
     } catch (Exception e) {
       System.out.println("Error: " + e.getMessage());
     }
+  }
+
+  private static void addUser() {
+    System.out.print("User ID: ");
+    int id = Integer.parseInt(scanner.nextLine());
+    System.out.println("Username: ");
+    String username = scanner.nextLine();
+    System.out.println("Password: ");
+    String password = scanner.nextLine();
+    User newUser = new User(id, username, password);
+    userService.createUser(newUser);
+    printAllUsers();
   }
 }

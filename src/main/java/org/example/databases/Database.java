@@ -43,27 +43,27 @@ public class Database {
             new User(10, "Lydia", "efghij")
     ));
     this.playlists = new ArrayList<>(List.of(
-            new Playlist(1, "Morning Vibes", List.of(mediaFiles.get(0), mediaFiles.get(1), mediaFiles.get(2))),
-            new Playlist(2, "Evening Relaxation", List.of(mediaFiles.get(3), mediaFiles.get(4), mediaFiles.get(5))),
-            new Playlist(3, "Workout Mix", List.of(mediaFiles.get(6), mediaFiles.get(7), mediaFiles.get(8))),
-            new Playlist(4, "Road Trip", List.of(mediaFiles.get(9), mediaFiles.get(10), mediaFiles.get(11))),
-            new Playlist(5, "Party Time", List.of(mediaFiles.get(12), mediaFiles.get(13), mediaFiles.get(14))),
-            new Playlist(6, "Chill Out", List.of(mediaFiles.get(0), mediaFiles.get(3), mediaFiles.get(6))),
-            new Playlist(7, "Classic Hits", List.of(mediaFiles.get(1), mediaFiles.get(4), mediaFiles.get(7))),
-            new Playlist(8, "Rock Legends", List.of(mediaFiles.get(2), mediaFiles.get(5), mediaFiles.get(8))),
-            new Playlist(9, "Top 40", List.of(mediaFiles.get(9), mediaFiles.get(12), mediaFiles.get(15))),
-            new Playlist(10, "Golden Oldies", List.of(mediaFiles.get(1), mediaFiles.get(10), mediaFiles.get(13))),
-            new Playlist(11, "Summer Hits", List.of(mediaFiles.get(2), mediaFiles.get(8), mediaFiles.get(14))),
-            new Playlist(12, "Winter Warmers", List.of(mediaFiles.get(3), mediaFiles.get(6), mediaFiles.get(9))),
-            new Playlist(13, "Autumn Acoustic", List.of(mediaFiles.get(4), mediaFiles.get(7), mediaFiles.get(10))),
-            new Playlist(14, "Spring Sing-Along", List.of(mediaFiles.get(5), mediaFiles.get(8), mediaFiles.get(11))),
-            new Playlist(15, "Instrumental", List.of(mediaFiles.get(0), mediaFiles.get(1), mediaFiles.get(2))),
-            new Playlist(16, "Pop Classics", List.of(mediaFiles.get(3), mediaFiles.get(4), mediaFiles.get(5))),
-            new Playlist(17, "Hip Hop Hits", List.of(mediaFiles.get(6), mediaFiles.get(7), mediaFiles.get(8))),
-            new Playlist(18, "Indie Favourites", List.of(mediaFiles.get(9), mediaFiles.get(10), mediaFiles.get(11))),
-            new Playlist(19, "Jazz Collection", List.of(mediaFiles.get(12), mediaFiles.get(13), mediaFiles.get(14))),
-            new Playlist(20, "Electronic Beats", List.of(mediaFiles.get(0), mediaFiles.get(2), mediaFiles.get(4)))
-    ));
+            new Playlist(1, "Morning Vibes"),
+            new Playlist(2, "Evening Relaxation"),
+            new Playlist(3, "Workout Mix"),
+            new Playlist(4, "Road Trip"),
+            new Playlist(5, "Party Time"),
+            new Playlist(6, "Chill Out"),
+            new Playlist(7, "Classic Hits"),
+            new Playlist(8, "Rock Legends"),
+            new Playlist(9, "Top 40"),
+            new Playlist(10, "Golden Oldies"),
+            new Playlist(11, "Summer Hits"),
+            new Playlist(12, "Winter Warmers"),
+            new Playlist(13, "Autumn Acoustic"),
+            new Playlist(14, "Spring Sing-Along"),
+            new Playlist(15, "Instrumental"),
+            new Playlist(16, "Pop Classics"),
+            new Playlist(17, "Hip Hop Hits"),
+            new Playlist(18, "Indie Favourites"),
+            new Playlist(19, "Jazz Collection"),
+            new Playlist(20, "Electronic Beats"))
+    );
   }
 }
 
