@@ -19,15 +19,15 @@ public class User {
     this.password = password;
   }
 
-  void addPlaylist(Playlist playlist) {
-
+  public void addPlaylist(Playlist playlist) {
+    playlists.add(playlist);
   }
 
-  public boolean removePlaylist(Playlist playlist) {
-    return true;
+  public void removePlaylist(Playlist playlist) {
+    playlists.remove(playlist);
   }
 
-  public void getPlaylists() {
-
+  public List<Playlist> getPlaylists() {
+    return playlists;
   }
 }

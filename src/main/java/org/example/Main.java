@@ -45,8 +45,11 @@ public class Main {
       System.out.println("4- Show user by ID");
       System.out.println("5- Add user");
       System.out.println("6- Delete user");
-      System.out.println("7- Show all playlists");
-      System.out.println("8- Show playlist by ID");
+      System.out.println("7- Show user's playlists");
+      System.out.println("8- Add playlist for user");
+      System.out.println("9- Delete playlist from user");
+      System.out.println("A- Show all playlists");
+      System.out.println("B- Show playlist by ID");
       System.out.println("Q- Quit");
       System.out.println(BLUE + "Enter your choice: ");
       choice = scanner.nextLine().toUpperCase();
@@ -58,8 +61,11 @@ public class Main {
         case "4" -> printUserById();
         case "5" -> addUser();
         case "6" -> delUser();
-        case "7" -> printAllPlaylists();
-        case "8" -> printPlaylistById();
+        case "7" -> printUserPlaylists();
+        case "8" -> delUser();
+        case "9" -> delUser();
+        case "A" -> printAllPlaylists();
+        case "B" -> printPlaylistById();
         case "Q" -> System.out.println(RED + "Exiting the app...");
         default -> System.out.println(RED + "Invalid choice, try again!");
       }
@@ -179,4 +185,27 @@ public class Main {
       System.out.println("Error: " + e.getMessage());
     }
   }
+
+  private static void printUserPlaylists() {
+    System.out.print("Enter the user ID: ");
+    String id = scanner.nextLine();
+    try {
+      Optional<User> optionalUser = userService.getUser(Integer.parseInt(id));
+      if (optionalUser.isPresent()) {
+        User user = optionalUser.get();
+        if (user.getPlaylists() == null) {
+          System.out.println(RED + "\nThere is no playlist for user " + user.getUsername());
+        } else {
+          System.out.println(YELLOW + user.getPlaylists());
+        }
+      } else {
+        System.out.println(RED + "User with ID " + id + " not found.");
+      }
+    } catch (NumberFormatException e) {
+      System.out.println(RED + "Invalid ID format: " + id);
+    } catch (Exception e) {
+      System.out.println("Error: " + e.getMessage());
+    }
+  }
+  
 }
