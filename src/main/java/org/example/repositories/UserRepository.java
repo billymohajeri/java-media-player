@@ -18,7 +18,7 @@ public class UserRepository {
   }
 
   public void removeUser(User user) {
-
+    users.remove(user);
   }
 
   public void updateUser(User user) {
