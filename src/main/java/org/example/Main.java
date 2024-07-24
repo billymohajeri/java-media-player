@@ -11,6 +11,7 @@ import org.example.services.MediaFileService;
 import org.example.services.PlaylistService;
 import org.example.services.UserService;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 import java.util.Scanner;
@@ -62,7 +63,7 @@ public class Main {
         case "5" -> addUser();
         case "6" -> delUser();
         case "7" -> printUserPlaylists();
-        case "8" -> delUser();
+        case "8" -> addUserPlaylists();
         case "9" -> delUser();
         case "A" -> printAllPlaylists();
         case "B" -> printPlaylistById();
@@ -131,7 +132,7 @@ public class Main {
     String username = scanner.nextLine();
     System.out.print("Password: ");
     String password = scanner.nextLine();
-    User newUser = new User(id, username, password);
+    User newUser = new User(id, username, password, new ArrayList<>());
     try {
       userService.createUser(newUser);
       System.out.println("\nUser created successfully!");
@@ -207,5 +208,40 @@ public class Main {
       System.out.println("Error: " + e.getMessage());
     }
   }
-  
+
+  private static void addUserPlaylists() {
+    System.out.print("Enter the user ID: ");
+    String id = scanner.nextLine();
+    try {
+      Optional<User> optionalUser = userService.getUser(Integer.parseInt(id));
+      if (optionalUser.isPresent()) {
+        User user = optionalUser.get();
+        System.out.print("Enter the playlist ID to add to user " + user.getUsername() + ": ");
+        String playlistId = scanner.nextLine();
+        try {
+          Optional<Playlist> optionalPlaylist = playlistService.getPlaylist(Integer.parseInt(playlistId));
+          if (optionalPlaylist.isPresent()) {
+            Playlist playlist = optionalPlaylist.get();
+            user.addPlaylist(playlist);
+            System.out.println(YELLOW + "Playlist added successfully!\nUser's playlists: ");
+            for (Playlist userPlaylist : user.getPlaylists()) {
+              System.out.println(userPlaylist.getName());
+            }
+          } else {
+            System.out.println(RED + "Playlist with ID " + playlistId + " not found.");
+          }
+        } catch (NumberFormatException e) {
+          System.out.println(RED + "Invalid playlist ID format: " + playlistId);
+        } catch (Exception e) {
+          System.out.println("Error: " + e.getMessage());
+        }
+      } else {
+        System.out.println(RED + "User with ID " + id + " not found.");
+      }
+    } catch (NumberFormatException e) {
+      System.out.println(RED + "Invalid user ID format: " + id);
+    } catch (Exception e) {
+      System.out.println("Error: " + e.getMessage());
+    }
+  }
 }

@@ -1,23 +1,18 @@
 package org.example.entities;
 
+import lombok.AllArgsConstructor;
 import lombok.Getter;
 
 import java.util.List;
 
 @Getter
-
+@AllArgsConstructor
 
 public class User {
   private final int id;
   private String username;
   private String password;
   private List<Playlist> playlists;
-
-  public User(int id, String username, String password) {
-    this.id = id;
-    this.username = username;
-    this.password = password;
-  }
 
   public void addPlaylist(Playlist playlist) {
     playlists.add(playlist);

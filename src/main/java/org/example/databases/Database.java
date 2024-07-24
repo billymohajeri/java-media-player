@@ -31,16 +31,16 @@ public class Database {
             new MediaFile(15, "Napapiirin sankarit", "Video")
     ));
     this.users = new ArrayList<>(List.of(
-            new User(1, "Billy", "123456"),
-            new User(2, "Walter", "123456"),
-            new User(3, "Sky", "123456"),
-            new User(4, "Jesse", "654321"),
-            new User(5, "Hank", "abcdef"),
-            new User(6, "Marie", "ghijkl"),
-            new User(7, "Saul", "mnopqr"),
-            new User(8, "Gus", "stuvwx"),
-            new User(9, "Mike", "yzabcd"),
-            new User(10, "Lydia", "efghij")
+            new User(1, "Billy", "123456", new ArrayList<>()),
+            new User(2, "Walter", "123456", new ArrayList<>()),
+            new User(3, "Sky", "123456", new ArrayList<>()),
+            new User(4, "Jesse", "654321", new ArrayList<>()),
+            new User(5, "Hank", "abcdef", new ArrayList<>()),
+            new User(6, "Marie", "ghijkl", new ArrayList<>()),
+            new User(7, "Saul", "mnopqr", new ArrayList<>()),
+            new User(8, "Gus", "stuvwx", new ArrayList<>()),
+            new User(9, "Mike", "yzabcd", new ArrayList<>()),
+            new User(10, "Lydia", "efghij", new ArrayList<>())
     ));
     this.playlists = new ArrayList<>(List.of(
             new Playlist(1, "Morning Vibes"),
