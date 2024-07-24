@@ -39,14 +39,14 @@ public class Main {
   public static void main(String[] args) {
     String choice = "";
     while (!choice.equalsIgnoreCase("Q")) {
-      System.out.println(BLUE + "\n1- Get all media files");
-      System.out.println("2- Get media file by ID");
-      System.out.println("3- Get all users");
-      System.out.println("4- Get user by ID");
+      System.out.println(BLUE + "\n1- Show all media files");
+      System.out.println("2- Show media file by ID");
+      System.out.println("3- Show all users");
+      System.out.println("4- Show user by ID");
       System.out.println("5- Add user");
       System.out.println("6- Delete user");
-      System.out.println("7- Get all playlists");
-      System.out.println("8- Delete user");
+      System.out.println("7- Show all playlists");
+      System.out.println("8- Show playlist by ID");
       System.out.println("Q- Quit");
       System.out.println(BLUE + "Enter your choice: ");
       choice = scanner.nextLine().toUpperCase();
@@ -59,7 +59,7 @@ public class Main {
         case "5" -> addUser();
         case "6" -> delUser();
         case "7" -> printAllPlaylists();
-        case "8" -> delUser();
+        case "8" -> printPlaylistById();
         case "Q" -> System.out.println(RED + "Exiting the app...");
         default -> System.out.println(RED + "Invalid choice, try again!");
       }
@@ -159,6 +159,24 @@ public class Main {
     System.out.println(YELLOW + "\nHere is the list of all playlists:");
     for (org.example.entities.Playlist playlist : playlists) {
       System.out.println(playlist.getId() + ": " + playlist.getName());
+    }
+  }
+
+  private static void printPlaylistById() {
+    System.out.print("Enter the playlist ID: ");
+    String id = scanner.nextLine();
+    try {
+      Optional<Playlist> optionalPlaylist = playlistService.getPlaylist(Integer.parseInt(id));
+      if (optionalPlaylist.isPresent()) {
+        Playlist playlist = optionalPlaylist.get();
+        System.out.println(YELLOW + "\n" + id + ": " + playlist.getName());
+      } else {
+        System.out.println(RED + "Playlist with ID " + id + " not found.");
+      }
+    } catch (NumberFormatException e) {
+      System.out.println(RED + "Invalid ID format: " + id);
+    } catch (Exception e) {
+      System.out.println("Error: " + e.getMessage());
     }
   }
 }
