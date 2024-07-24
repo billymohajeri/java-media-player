@@ -24,6 +24,7 @@ public class UserService implements IUserService {
   }
 
   public void updateUser(User user) {
+    userRepository.updateUser(user);
   }
 
   public Optional<User> getUser(int id) {

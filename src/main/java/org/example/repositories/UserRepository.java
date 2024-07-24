@@ -22,7 +22,7 @@ public class UserRepository {
   }
 
   public void updateUser(User user) {
-
+    users.set(user.getId(), user);
   }
 
   public Optional<User> getUserById(int id) {
