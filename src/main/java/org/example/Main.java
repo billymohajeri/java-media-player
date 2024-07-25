@@ -125,6 +125,23 @@ public class Main {
   }
 
   private static void delMediaFile() {
+    System.out.print("Enter the media file ID: ");
+    String id = scanner.nextLine();
+    try {
+      Optional<MediaFile> optionalMedia = mediaFileService.getMediaFile(Integer.parseInt(id));
+      if (optionalMedia.isPresent()) {
+        MediaFile mediaFile = optionalMedia.get();
+        mediaFileService.deleteMediaFile(mediaFile.getId());
+        System.out.println("\nMedia file " + mediaFile.getId() + ": " + mediaFile.getName() + " deleted successfully!");
+        printAllMediaFiles();
+      } else {
+        System.out.println(RED + "Media file with ID " + id + " not found.");
+      }
+    } catch (NumberFormatException e) {
+      System.out.println(RED + "Invalid ID format: " + id);
+    } catch (Exception e) {
+      System.out.println(RED + "Error: " + e.getMessage());
+    }
   }
 
   private static void changeMediaFile() {

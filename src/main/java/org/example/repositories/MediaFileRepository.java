@@ -18,7 +18,7 @@ public class MediaFileRepository {
   }
 
   public void removeMediaFile(MediaFile mediaFile) {
-
+    mediaFiles.remove(mediaFile);
   }
 
   public void updateMediaFile(MediaFile mediaFile) {
