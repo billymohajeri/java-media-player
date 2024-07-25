@@ -1,12 +1,11 @@
 package org.example.entities;
 
-import lombok.AllArgsConstructor;
 import lombok.Getter;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Getter
-@AllArgsConstructor
 
 public class User {
   private final int id;
@@ -14,7 +13,16 @@ public class User {
   private String password;
   private List<Playlist> playlists;
 
+  public User(int id, String username, String password) {
+    this.id = id;
+    this.username = username;
+    this.password = password;
+  }
+
   public void addPlaylist(Playlist playlist) {
+    if (playlists == null) {
+      playlists = new ArrayList<>();
+    }
     playlists.add(playlist);
   }
 
