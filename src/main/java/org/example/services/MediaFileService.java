@@ -15,6 +15,7 @@ public class MediaFileService implements IMediaFileService {
   }
 
   public void addMediaFile(MediaFile mediaFile) {
+    mediaFileRepository.addMediaFile(mediaFile);
   }
 
   public void deleteMediaFile(int id) {
