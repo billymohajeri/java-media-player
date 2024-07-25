@@ -61,7 +61,7 @@ public class Main {
         case "2" -> printMediaFileById();
         case "3" -> addNewMediaFile();
         case "4" -> delMediaFile();
-        case "5" -> changeMediaFile();
+        case "5" -> changeMedia();
         case "6" -> printAllUsers();
         case "7" -> printUserById();
         case "8" -> addUser();
@@ -144,7 +144,27 @@ public class Main {
     }
   }
 
-  private static void changeMediaFile() {
+  private static void changeMedia() {
+    System.out.print("Enter the media file ID: ");
+    String id = scanner.nextLine();
+    Optional<MediaFile> optionalMediaFile = mediaFileService.getMediaFile(Integer.parseInt(id));
+    if (optionalMediaFile.isPresent()) {
+      MediaFile mediaFile = optionalMediaFile.get();
+      String currentType = mediaFile.getType();
+      String newType = (currentType.equals("Audio")) ? "Video" : "Audio";
+      System.out.print("Do you want to change the type for " + mediaFile.getName()
+              + " from " + currentType + " to " + newType + "? (Y/N): ");
+      String answer = scanner.nextLine();
+      if (answer.equalsIgnoreCase("Y")) {
+        mediaFile.updateType(newType);
+        mediaFileService.updateMediaFile(mediaFile);
+        System.out.println("\nType for ID " + mediaFile.getId() + " changed from " + currentType
+                + " to " + mediaFile.getType() + ".");
+      } else {
+        System.out.println("Nothing has changed!");
+      }
+      printAllMediaFiles();
+    }
   }
 
   private static void printAllUsers() {
@@ -201,7 +221,7 @@ public class Main {
     Optional<User> optionalUser = getUserById();
     if (optionalUser.isPresent()) {
       User user = optionalUser.get();
-      userService.deleteUser(user);
+      userService.deleteUser(user.getId());
       System.out.println("\nUser " + user.getId() + ": " + user.getUsername() + " deleted successfully!");
       printAllUsers();
     }

@@ -19,8 +19,8 @@ public class UserService implements IUserService {
     userRepository.addUser(user);
   }
 
-  public void deleteUser(User user) {
-    userRepository.removeUser(user);
+  public void deleteUser(int id) {
+    userRepository.removeUser(getUser(id).get());
   }
 
   public void updateUser(User user) {

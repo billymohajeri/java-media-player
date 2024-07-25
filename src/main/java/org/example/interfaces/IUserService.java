@@ -8,7 +8,7 @@ import java.util.Optional;
 public interface IUserService {
   void createUser(User user);
 
-  void deleteUser(User user);
+  void deleteUser(int id);
 
   void updateUser(User user);
 
