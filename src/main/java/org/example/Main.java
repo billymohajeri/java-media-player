@@ -180,6 +180,33 @@ public class Main {
   }
 
   private static void changePassword() {
+    Optional<User> optionalUser = getUserById();
+    if (optionalUser.isPresent()) {
+      User user = optionalUser.get();
+      String oldPassword = user.getPassword();
+      String inputPassword = "";
+      String confirmPassword = "";
+      String newPassword = "";
+      do {
+        System.out.print("Enter current password for " + user.getUsername() + ": ");
+        inputPassword = scanner.nextLine();
+        if (!inputPassword.equals(oldPassword)) {
+          System.out.println(RED + "Password is wrong! Try again." + BLUE);
+        }
+      } while (!inputPassword.equals(oldPassword));
+      do {
+        System.out.print("Enter new password: ");
+        newPassword = scanner.nextLine();
+        System.out.print("Re-enter new password: ");
+        confirmPassword = scanner.nextLine();
+        if (!newPassword.equals(confirmPassword)) {
+          System.out.println(RED + "Password doesn't match! Try again." + BLUE);
+        }
+      } while (!newPassword.equals(confirmPassword));
+      user.setPassword(newPassword);
+      userService.updateUser(user);
+      System.out.println("\nPassword for " + user.getUsername() + " changed successfully.");
+    }
   }
 
   private static void printAllPlaylists() {
