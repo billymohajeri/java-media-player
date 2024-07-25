@@ -1,5 +1,6 @@
 package org.example.databases;
 
+import org.example.entities.Admin;
 import org.example.entities.MediaFile;
 import org.example.entities.Playlist;
 import org.example.entities.User;
@@ -11,6 +12,7 @@ public class Database {
   public List<MediaFile> mediaFiles;
   public List<User> users;
   public List<Playlist> playlists;
+  public List<Admin> admins;
 
   public Database() {
     this.mediaFiles = new ArrayList<>(List.of(
@@ -31,16 +33,16 @@ public class Database {
             new MediaFile(15, "Napapiirin sankarit", "Video")
     ));
     this.users = new ArrayList<>(List.of(
-            new User(1, "Billy", "123456"),
-            new User(2, "Walter", "123456"),
-            new User(3, "Sky", "123456"),
-            new User(4, "Jesse", "654321"),
-            new User(5, "Hank", "abcdef"),
-            new User(6, "Marie", "ghijkl"),
-            new User(7, "Saul", "mnopqr"),
-            new User(8, "Gus", "stuvwx"),
-            new User(9, "Mike", "yzabcd"),
-            new User(10, "Lydia", "efghij")
+            new User(1, "Billy", "123456", true),
+            new User(2, "Walter", "123456", false),
+            new User(3, "Sky", "123456", false),
+            new User(4, "Jesse", "654321", false),
+            new User(5, "Hank", "abcdef", false),
+            new User(6, "Marie", "ghijkl", false),
+            new User(7, "Saul", "mnopqr", false),
+            new User(8, "Gus", "stuvwx", false),
+            new User(9, "Mike", "yzabcd", false),
+            new User(10, "Lydia", "efghij", false)
     ));
 
     this.playlists = new ArrayList<>(List.of(
@@ -63,8 +65,8 @@ public class Database {
             new Playlist(17, "Hip Hop Hits"),
             new Playlist(18, "Indie Favourites"),
             new Playlist(19, "Jazz Collection"),
-            new Playlist(20, "Electronic Beats"))
-    );
+            new Playlist(20, "Electronic Beats")
+    ));
   }
 }
 

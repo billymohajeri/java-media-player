@@ -29,54 +29,10 @@ public class Main {
   private static final PlaylistRepository playlistRepository = new PlaylistRepository(database);
   private static final PlaylistService playlistService = new PlaylistService(playlistRepository);
   private static final List<Playlist> playlists = playlistService.listPlaylists();
-  private static boolean isAdmin = false;
   private static Scanner scanner = new Scanner(System.in);
 
   public static void main(String[] args) {
-    String choice = "";
-    while (!choice.equalsIgnoreCase("Q")) {
-      System.out.println(YELLOW + "\n=== Billy's Media Player ===");
-      System.out.println(BLUE + "\n(1) Show all media files");
-      System.out.println("(2) Show media file by ID");
-      System.out.println("(3) Add media file");
-      System.out.println("(4) Remove media file");
-      System.out.println("(5) Update media file");
-      System.out.println("\n(6) Show all users");
-      System.out.println("(7) Show user by ID");
-      System.out.println("(8) Add user");
-      System.out.println("(9) Delete user");
-      System.out.println("(A Change username");
-      System.out.println("(B) Change password");
-      System.out.println("\n(C) Show user's playlists");
-      System.out.println("(D) Add playlist for user");
-      System.out.println("(E) Remove playlist from user");
-      System.out.println("(F) Show all playlists");
-      System.out.println("(G) Show playlist by ID");
-      System.out.println(RED + "(Q) Quit");
-      System.out.println(BLUE + "\nEnter your choice: ");
-      choice = scanner.nextLine().toUpperCase();
-
-      switch (choice) {
-        case "1" -> printAllMediaFiles();
-        case "2" -> printMediaFileById();
-        case "3" -> addNewMediaFile();
-        case "4" -> delMediaFile();
-        case "5" -> changeMedia();
-        case "6" -> printAllUsers();
-        case "7" -> printUserById();
-        case "8" -> addUser();
-        case "9" -> delUser();
-        case "A" -> changeUsername();
-        case "B" -> changePassword();
-        case "C" -> printUserPlaylists();
-        case "D" -> addUserPlaylists();
-        case "E" -> removeUserPlaylist();
-        case "F" -> printAllPlaylists();
-        case "G" -> printPlaylistById();
-        case "Q" -> System.out.println(RED + "Exiting the app...");
-        default -> System.out.println(RED + "Invalid choice, try again!");
-      }
-    }
+    login();
   }
 
 
@@ -161,7 +117,7 @@ public class Main {
         System.out.println("\nType for ID " + mediaFile.getId() + " changed from " + currentType
                 + " to " + mediaFile.getType() + ".");
       } else {
-        System.out.println("Nothing has changed!");
+        System.out.println("\nNothing has changed!");
       }
       printAllMediaFiles();
     }
@@ -207,7 +163,7 @@ public class Main {
     String username = scanner.nextLine();
     System.out.print("Password: ");
     String password = scanner.nextLine();
-    User newUser = new User(id, username, password);
+    User newUser = new User(id, username, password, false);
     try {
       userService.createUser(newUser);
       System.out.println("\nUser created successfully!");
@@ -282,11 +238,13 @@ public class Main {
   private static void printPlaylistById() {
     System.out.print("Enter the playlist ID: ");
     String id = scanner.nextLine();
+
     try {
       Optional<Playlist> optionalPlaylist = playlistService.getPlaylist(Integer.parseInt(id));
       if (optionalPlaylist.isPresent()) {
         Playlist playlist = optionalPlaylist.get();
         System.out.println(YELLOW + "\n" + id + ": " + playlist.getName());
+        playlist.playMedia(1);
       } else {
         System.out.println(RED + "Playlist with ID " + id + " not found.");
       }
@@ -394,5 +352,82 @@ public class Main {
     } catch (Exception e) {
       System.out.println(RED + "Error: " + e.getMessage());
     }
+  }
+
+  private static void login() {
+    boolean isLoggedIn = false;
+    do {
+      System.out.print(BLUE + "\nEnter your username: ");
+      String username = scanner.nextLine();
+      System.out.print("And password: ");
+      String password = scanner.nextLine();
+      Optional<User> optionalUser = userService.listUsers().stream()
+              .filter(user -> user.getUsername().equalsIgnoreCase(username) && user.getPassword().equals(password))
+              .findFirst();
+      if (optionalUser.isPresent()) {
+        User user = optionalUser.get();
+        isLoggedIn = true;
+        System.out.println("Welcome, " + user.getUsername() + "!");
+        if (user.isAdmin()) {
+          showAdminMenu();
+        } else {
+          showUserMenu();
+        }
+      } else {
+        System.out.println(RED + "Invalid username or password. Please try again." + BLUE);
+      }
+    } while (!isLoggedIn);
+  }
+
+  private static void showUserMenu() {
+    System.out.println("USER menu");
+  }
+
+  private static void showAdminMenu() {
+    String choice = "";
+    while (!choice.equalsIgnoreCase("Q")) {
+      System.out.println(YELLOW + "\n=== Admin Menu ===");
+      System.out.println(BLUE + "\n(1) Show all media files");
+      System.out.println("(2) Show media file by ID");
+      System.out.println("(3) Add media file");
+      System.out.println("(4) Delete media file");
+      System.out.println("(5) Update media file");
+      System.out.println("\n(6) Show all users");
+      System.out.println("(7) Show user by ID");
+      System.out.println("(8) Add user");
+      System.out.println("(9) Delete user");
+      System.out.println("(A) Change username");
+      System.out.println("(B) Change password");
+      System.out.println("\n(C) Show user's playlists");
+      System.out.println("(D) Add playlist for user");
+      System.out.println("(E) Remove playlist from user");
+      System.out.println("(F) Show all playlists");
+      System.out.println("(G) Show playlist by ID");
+      System.out.println(RED + "(Q) Quit");
+      System.out.println(BLUE + "\nEnter your choice: ");
+      choice = scanner.nextLine().toUpperCase();
+
+      switch (choice) {
+        case "1" -> printAllMediaFiles();
+        case "2" -> printMediaFileById();
+        case "3" -> addNewMediaFile();
+        case "4" -> delMediaFile();
+        case "5" -> changeMedia();
+        case "6" -> printAllUsers();
+        case "7" -> printUserById();
+        case "8" -> addUser();
+        case "9" -> delUser();
+        case "A" -> changeUsername();
+        case "B" -> changePassword();
+        case "C" -> printUserPlaylists();
+        case "D" -> addUserPlaylists();
+        case "E" -> removeUserPlaylist();
+        case "F" -> printAllPlaylists();
+        case "G" -> printPlaylistById();
+        case "Q" -> System.out.println(RED + "Exiting the app...");
+        default -> System.out.println(RED + "Invalid choice, try again!");
+      }
+    }
+
   }
 }
