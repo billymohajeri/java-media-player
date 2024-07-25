@@ -39,19 +39,22 @@ public class Main {
   public static void main(String[] args) {
     String choice = "";
     while (!choice.equalsIgnoreCase("Q")) {
-      System.out.println(BLUE + "\n1- Show all media files");
-      System.out.println("2- Show media file by ID");
-      System.out.println("3- Show all users");
-      System.out.println("4- Show user by ID");
-      System.out.println("5- Add user");
-      System.out.println("6- Delete user");
-      System.out.println("7- Show user's playlists");
-      System.out.println("8- Add playlist for user");
-      System.out.println("9- Delete playlist from user");
-      System.out.println("A- Show all playlists");
-      System.out.println("B- Show playlist by ID");
-      System.out.println("Q- Quit");
-      System.out.println(BLUE + "Enter your choice: ");
+      System.out.println(YELLOW + "\n=== Billy's Media Player ===");
+      System.out.println(BLUE + "\n(1) Show all media files");
+      System.out.println("(2) Show media file by ID");
+      System.out.println("\n(3) Show all users");
+      System.out.println("(4) Show user by ID");
+      System.out.println("(5) Add user");
+      System.out.println("(6) Delete user");
+      System.out.println("(7) Change username");
+      System.out.println("(8) Change password");
+      System.out.println("\n(9) Show user's playlists");
+      System.out.println("(A) Add playlist for user");
+      System.out.println("(B) Remove playlist from user");
+      System.out.println("(C) Show all playlists");
+      System.out.println("(D) Show playlist by ID");
+      System.out.println(RED + "(Q) Quit");
+      System.out.println(BLUE + "\nEnter your choice: ");
       choice = scanner.nextLine().toUpperCase();
 
       switch (choice) {
@@ -61,11 +64,13 @@ public class Main {
         case "4" -> printUserById();
         case "5" -> addUser();
         case "6" -> delUser();
-        case "7" -> printUserPlaylists();
-        case "8" -> addUserPlaylists();
-        case "9" -> removeUserPlaylist();
-        case "A" -> printAllPlaylists();
-        case "B" -> printPlaylistById();
+        case "7" -> changeUsername();
+        case "8" -> changePassword();
+        case "9" -> printUserPlaylists();
+        case "A" -> addUserPlaylists();
+        case "B" -> removeUserPlaylist();
+        case "C" -> printAllPlaylists();
+        case "D" -> printPlaylistById();
         case "Q" -> System.out.println(RED + "Exiting the app...");
         default -> System.out.println(RED + "Invalid choice, try again!");
       }
@@ -106,14 +111,13 @@ public class Main {
     }
   }
 
-  private static void printUserById() {
+  private static Optional<User> getUserById() {
     System.out.print("Enter the user ID: ");
     String id = scanner.nextLine();
     try {
       Optional<User> optionalUser = userService.getUser(Integer.parseInt(id));
       if (optionalUser.isPresent()) {
-        User user = optionalUser.get();
-        System.out.println(YELLOW + "\n" + id + ": " + user.getUsername());
+        return optionalUser;
       } else {
         System.out.println(RED + "User with ID " + id + " not found.");
       }
@@ -121,6 +125,15 @@ public class Main {
       System.out.println(RED + "Invalid ID format: " + id);
     } catch (Exception e) {
       System.out.println(RED + "Error: " + e.getMessage());
+    }
+    return Optional.empty();
+  }
+
+  private static void printUserById() {
+    Optional<User> optionalUser = getUserById();
+    if (optionalUser.isPresent()) {
+      User user = optionalUser.get();
+      System.out.println(YELLOW + "\n" + user.getId() + ": " + user.getUsername());
     }
   }
 
@@ -142,23 +155,31 @@ public class Main {
   }
 
   private static void delUser() {
-    System.out.print("\nUser ID: ");
-    int id = Integer.parseInt(scanner.nextLine());
-    try {
-      Optional<User> optionalUser = userService.getUser(id);
-      if (optionalUser.isPresent()) {
-        User user = optionalUser.get();
-        System.out.println("\nUser " + id + ": " + user.getUsername() + " deleted successfully!");
-        userService.deleteUser(user);
-        printAllUsers();
-      } else {
-        System.out.println(RED + "User with ID " + id + " not found.");
-      }
-    } catch (NumberFormatException e) {
-      System.out.println(RED + "Invalid ID format: " + id);
-    } catch (Exception e) {
-      System.out.println(RED + "Error: " + e.getMessage());
+    Optional<User> optionalUser = getUserById();
+    if (optionalUser.isPresent()) {
+      User user = optionalUser.get();
+      userService.deleteUser(user);
+      System.out.println("\nUser " + user.getId() + ": " + user.getUsername() + " deleted successfully!");
+      printAllUsers();
     }
+  }
+
+  private static void changeUsername() {
+    Optional<User> optionalUser = getUserById();
+    if (optionalUser.isPresent()) {
+      User user = optionalUser.get();
+      String oldUsername = user.getUsername();
+      System.out.print("Enter new username for " + oldUsername + ": ");
+      String newUsername = scanner.nextLine();
+      user.setUsername(newUsername);
+      userService.updateUser(user);
+      System.out.println("\nUsername for ID " + user.getId() + " changed from " + oldUsername
+              + " to " + user.getUsername());
+      printAllUsers();
+    }
+  }
+
+  private static void changePassword() {
   }
 
   private static void printAllPlaylists() {
