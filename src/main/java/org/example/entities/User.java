@@ -31,6 +31,6 @@ public class User {
   }
 
   public List<Playlist> getPlaylists() {
-    return playlists;
+    return (playlists != null) ? playlists : new ArrayList<>();
   }
 }

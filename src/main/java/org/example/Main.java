@@ -63,7 +63,7 @@ public class Main {
         case "6" -> delUser();
         case "7" -> printUserPlaylists();
         case "8" -> addUserPlaylists();
-        case "9" -> delUser();
+        case "9" -> removeUserPlaylist();
         case "A" -> printAllPlaylists();
         case "B" -> printPlaylistById();
         case "Q" -> System.out.println(RED + "Exiting the app...");
@@ -193,10 +193,12 @@ public class Main {
       Optional<User> optionalUser = userService.getUser(Integer.parseInt(id));
       if (optionalUser.isPresent()) {
         User user = optionalUser.get();
-        if (user.getPlaylists() == null) {
-          System.out.println(RED + "\nThere is no playlist for user " + user.getUsername());
+        if (user.getPlaylists().isEmpty()) {
+          System.out.println(RED + "\nThere is no playlist for user " + user.getUsername() + ".");
         } else {
-          System.out.println(YELLOW + user.getPlaylists());
+          for (Playlist userPlaylist : user.getPlaylists()) {
+            System.out.println(" - " + userPlaylist.getName());
+          }
         }
       } else {
         System.out.println(RED + "User with ID " + id + " not found.");
@@ -221,9 +223,47 @@ public class Main {
           Optional<Playlist> optionalPlaylist = playlistService.getPlaylist(Integer.parseInt(playlistId));
           if (optionalPlaylist.isPresent()) {
             Playlist playlist = optionalPlaylist.get();
-
             user.addPlaylist(playlist);
             System.out.println(YELLOW + "Playlist added successfully!\n\n" + user.getUsername() + "'s playlist(s): ");
+            for (Playlist userPlaylist : user.getPlaylists()) {
+              System.out.println(" - " + userPlaylist.getName());
+            }
+          } else {
+            System.out.println(RED + "Playlist with ID " + playlistId + " not found.");
+          }
+        } catch (NumberFormatException e) {
+          System.out.println(RED + "Invalid playlist ID format: " + playlistId);
+        } catch (Exception e) {
+          System.out.println(RED + "Error: " + e.getMessage());
+        }
+      } else {
+        System.out.println(RED + "User with ID " + id + " not found.");
+      }
+    } catch (NumberFormatException e) {
+      System.out.println(RED + "Invalid user ID format: " + id);
+    } catch (Exception e) {
+      System.out.println(RED + "Error: " + e.getMessage());
+    }
+  }
+
+  private static void removeUserPlaylist() {
+    System.out.print("Enter the user ID: ");
+    String id = scanner.nextLine();
+    try {
+      Optional<User> optionalUser = userService.getUser(Integer.parseInt(id));
+      if (optionalUser.isPresent()) {
+        User user = optionalUser.get();
+        System.out.print("Enter the playlist ID to remove from user " + user.getUsername() + ": ");
+        String playlistId = scanner.nextLine();
+        try {
+          Optional<Playlist> optionalPlaylist = playlistService.getPlaylist(Integer.parseInt(playlistId));
+          if (optionalPlaylist.isPresent()) {
+            Playlist playlist = optionalPlaylist.get();
+            user.removePlaylist(playlist);
+            System.out.println(YELLOW + "Playlist removed successfully!\n\n" + user.getUsername() + "'s playlist(s): ");
+            if (user.getPlaylists().isEmpty()) {
+              System.out.println(RED + "\nThere is no playlist for user " + user.getUsername() + ".");
+            }
             for (Playlist userPlaylist : user.getPlaylists()) {
               System.out.println(" - " + userPlaylist.getName());
             }
