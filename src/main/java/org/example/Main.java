@@ -380,7 +380,30 @@ public class Main {
   }
 
   private static void showUserMenu() {
-    System.out.println("USER menu");
+    String choice = "";
+    while (!choice.equalsIgnoreCase("Q")) {
+      System.out.println(YELLOW + "\n=== User Menu ===");
+
+      System.out.println(BLUE + "\n(1) Add media file");
+      System.out.println("(2) Remove media file");
+      System.out.println("(3) Play media file");
+      System.out.println("(4) Pause media file");
+      System.out.println("(5) Stop media file");
+
+      System.out.println(RED + "(Q) Quit");
+      System.out.println(BLUE + "\nEnter your choice: ");
+      choice = scanner.nextLine().toUpperCase();
+
+      switch (choice) {
+        case "1" -> System.out.println(1);
+        case "2" -> System.out.println(2);
+        case "3" -> System.out.println(3);
+        case "4" -> System.out.println(4);
+        case "5" -> System.out.println(5);
+        case "Q" -> System.out.println(RED + "Exiting the app...");
+        default -> System.out.println(RED + "Invalid choice, try again!");
+      }
+    }
   }
 
   private static void showAdminMenu() {
