@@ -30,6 +30,7 @@ public class Main {
   private static final PlaylistService playlistService = new PlaylistService(playlistRepository);
   private static final List<Playlist> playlists = playlistService.listPlaylists();
   private static Scanner scanner = new Scanner(System.in);
+  private static boolean isAdmin = false;
 
   public static void main(String[] args) {
     login();
@@ -369,6 +370,7 @@ public class Main {
         isLoggedIn = true;
         System.out.println("Welcome, " + user.getUsername() + "!");
         if (user.isAdmin()) {
+          isAdmin = true;
           showAdminMenu();
         } else {
           showUserMenu();
@@ -397,13 +399,19 @@ public class Main {
       switch (choice) {
         case "1" -> System.out.println(1);
         case "2" -> System.out.println(2);
-        case "3" -> addNewMediaFile();
-        case "4" -> System.out.println(4);
+        case "3" -> addMediaFileToPlaylist();
+        case "4" -> playMediaFileToPlaylist();
         case "5" -> System.out.println(5);
         case "Q" -> System.out.println(RED + "Exiting the app...");
         default -> System.out.println(RED + "Invalid choice, try again!");
       }
     }
+  }
+
+  private static void playMediaFileToPlaylist() {
+  }
+
+  private static void addMediaFileToPlaylist() {
   }
 
   private static void showAdminMenu() {
